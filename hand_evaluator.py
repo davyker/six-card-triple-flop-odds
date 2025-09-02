@@ -1,8 +1,5 @@
 """
 Hand evaluation logic for Six-Card Triple Flop poker.
-
-This module provides optimized hand evaluation using numpy arrays for performance,
-especially in the Monte Carlo simulation hot path.
 """
 
 from itertools import combinations
