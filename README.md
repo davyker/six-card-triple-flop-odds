@@ -10,6 +10,8 @@ This repo contains a Monte Carlo simulator for Six-Card Triple Flop PLO, a varia
 
 This variant is popular in some cardrooms in London.
 
+This is a refactored edition of some code I wrote first wrote in 2019, in Pascal, then in Octave/MATLAB, then in Python, then finally refactored and improved.
+
 ## Quick Start
 
 ```bash
