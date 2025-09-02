@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Main entry point for Six-Card Triple Flop poker simulator.
 """
