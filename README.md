@@ -66,4 +66,4 @@ The hand evaluation is JIT-compiled with numba for speed. You should see:
 
 ## Disclaimer
 
-Do whatever you want with this code. No warranties, use at your own risk, don't blame me if you lose money playing this ridiculous poker variant.
+Do whatever you want with this code. Use at your own risk, don't blame me if you lose money playing this ridiculous poker variant.
