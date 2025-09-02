@@ -1,4 +1,4 @@
-# Six-Card Triple Flop Poker Simulator & Equity Calculator
+# Six-Card Triple Flop PLO Poker Simulator & Equity Calculator
 
 Pot Limit Omaha (PLO) is a variant of Texas Hold'em where each player gets 4 cards instead of 2, and at showdown players make their best 5-card hand using exactly 2 of their cards + 3 from each board
 
