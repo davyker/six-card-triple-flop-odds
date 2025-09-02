@@ -1,5 +1,5 @@
 """
-Monte Carlo simulator for Six-Card Triple Flop poker.
+Monte Carlo simulator for Six-Card Triple Flop PLO.
 """
 
 import time
