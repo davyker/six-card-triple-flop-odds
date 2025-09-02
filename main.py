@@ -6,12 +6,9 @@ Main entry point for Six-Card Triple Flop poker simulator.
 import argparse
 import sys
 import numpy as np
-from typing import Optional
 import matplotlib.pyplot as plt
 
-from simulator import TripleFlipMonteCarloSimulator
-from card_types import SimulationConfig, Card, Rank, Suit
-from hand_evaluator import vector_to_hand_strength
+from simulator import TripleFlipMonteCarloSimulator, SimulationConfig
 
 
 def parse_card(card_str: str) -> tuple[int, int]:
@@ -318,22 +315,13 @@ Examples:
     results = simulator.run_simulation()
     
     # Print results
-    print("\n" + "="*50)
-    print("SIMULATION RESULTS")
-    print("="*50)
-    print(f"Converged: {'Yes' if results.iteration_count < config.max_iterations else 'No'}")
-    print(f"Iterations: {results.iteration_count}")
-    print(f"Time: {results.total_time_seconds:.2f} seconds")
-    print(f"Speed: {results.iterations_per_second:.0f} iterations/second")
-    print()
+    results.print_summary()
     
-    print("Final Equities:")
-    final_equities = results.player_equities[:, -1]
-    for i in range(num_players):
-        equity = final_equities[i]
-        print(f"  Player {i}: {equity:.4f} ({equity*100:.2f}%)")
+    # Add convergence status
+    print(f"Converged: {'Yes' if results.iteration_count < config.max_iterations else 'No'}")
     
     # Sanity check
+    final_equities = results.player_equities[:, -1]
     total_equity = np.sum(final_equities[:num_players])
     if abs(total_equity - 1.0) > 0.001:
         print(f"\nWarning: Equities sum to {total_equity:.4f}, expected 1.0000")

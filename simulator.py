@@ -10,8 +10,44 @@ import numpy.typing as npt
 from tqdm import tqdm
 
 from hand_evaluator import find_best_six_card_triple_flop_hand
-from card_types import SimulationConfig, SimulationResults
 
+@dataclass
+class SimulationConfig:
+    """Configuration for Monte Carlo simulation."""
+    convergence_threshold: float = 0.0001
+    print_iterations: bool = False
+    plot_results: bool = True
+    max_iterations: int = 100000
+
+
+@dataclass
+class SimulationResults:
+    """Results from a Monte Carlo simulation."""
+    player_equities: npt.NDArray[np.float64]  # Shape: (num_players, num_iterations)
+    iteration_count: int
+    iteration_durations: npt.NDArray[np.float64]
+    convergence_history: npt.NDArray[np.float64]
+    average_iteration_time_ms: float
+    iterations_per_second: float
+    total_time_seconds: float
+    
+    def get_final_equities(self) -> npt.NDArray[np.float64]:
+        """Get the final equity estimates for each player."""
+        return self.player_equities[:, -1]
+    
+    def print_summary(self):
+        """Print a summary of the simulation results."""
+        print("\n" + "="*50)
+        print("SIMULATION RESULTS")
+        print("="*50)
+        print(f"Iterations: {self.iteration_count}")
+        print(f"Average iteration time: {self.average_iteration_time_ms:.2f} ms")
+        print(f"Iterations per second: {self.iterations_per_second:.2f}")
+        print(f"Total time: {self.total_time_seconds:.2f} seconds")
+        print("\nFinal Equities:")
+        for i, equity in enumerate(self.get_final_equities()):
+            if equity > 0:  # Only show active players
+                print(f"  Player {i}: {equity:.4f} ({equity*100:.2f}%)")
 
 class EquityHistory:
     """Track full equity history for convergence checking and plotting."""

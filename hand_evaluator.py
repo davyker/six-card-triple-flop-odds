@@ -6,12 +6,10 @@ especially in the Monte Carlo simulation hot path.
 """
 
 from itertools import combinations
-from typing import List, Tuple, Optional
+from typing import Tuple
 import numpy as np
 import numpy.typing as npt
 from numba import jit
-
-from card_types import HandRank, HandStrength, Rank
 
 
 @jit(nopython=True)
@@ -183,19 +181,4 @@ def find_best_six_card_triple_flop_hand(
                                 break
     
     return best_hand
-
-
-def vector_to_hand_strength(hand_vector: npt.NDArray[np.int32]) -> HandStrength:
-    """
-    Convert a hand strength vector to HandStrength object for debugging/testing.
-    
-    Args:
-        hand_vector: Array of 6 integers [hand_rank, tiebreakers...]
-        
-    Returns:
-        HandStrength object for readable display
-    """
-    rank = HandRank(int(hand_vector[0]))
-    tiebreakers = hand_vector[1:].tolist()
-    return HandStrength(rank, tiebreakers)
 
