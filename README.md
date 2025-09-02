@@ -1,10 +1,14 @@
-# Six-Card Triple Flop Poker Simulator
+# Six-Card Triple Flop Poker Simulator & Equity Calculator
 
-A Monte Carlo simulator for a variant of Pot Limit Omaha where:
-- Each player gets **6 cards** instead of 2
+Pot Limit Omaha (PLO) is a variant of Texas Hold'em where each player gets 4 cards instead of 2, and at showdown players make their best 5-card hand using exactly 2 of their cards + 3 from each board
+
+This repo contains a Monte Carlo simulator for Six-Card Triple Flop PLO, a variant of Pot Limit Omaha where:
+- Each player gets **6 cards** instead of 4
 - There are **3 separate boards** of community cards (flops/turns/rivers)
-- Players make their best 5-card hand using exactly 2 of their cards + 3 from each board (as in traditional Omaha)
+- On each board, players make their best 5-card hand using exactly 2 of their cards + 3 (the two from their hand can differ between boards)
 - Winner on each board gets 1 point (ties split the point), player with most points scoops the pot (ties for the most points split the pot)
+
+This variant is popular in some cardrooms in London.
 
 ## Quick Start
 
