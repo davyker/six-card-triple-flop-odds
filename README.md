@@ -8,6 +8,10 @@ This repo contains a Monte Carlo simulator for Six-Card Triple Flop PLO, a varia
 - On each board, players make their best 5-card hand using exactly 2 of their cards + 3 (the two from their hand can differ between boards)
 - Winner on each board gets 1 point (ties split the point), player with most points scoops the pot (ties for the most points split the pot)
 
+This variant is less amenable to brute-force exhaustive board completions, owing to increased complexity of determining who wins the pot, and the much larger number of cards being dealt, creating combinatorial explosion.
+For example, with two players evaluated preflop, there are (40 choose 5) * (35 choose 5) * (30 choose 5) / (3!) possilbe sets of 3 boards, which is around 5.1e15.
+The equivalent figure for Texas Hold'em is 48 choose 5 = 1.7e6
+
 This variant is popular in some cardrooms in London.
 
 This is a refactored edition of some code I wrote first wrote in 2019, in Pascal, then in Octave/MATLAB, then in Python, then finally refactored and improved.
@@ -53,11 +57,6 @@ The running average converges to true equity by the law of large numbers.
 The progress bars show:
 1. **Iterations**: Progress toward max iterations
 2. **Convergence**: How close the standard error is to your threshold (using 1/std² which grows linearly)
-
-The hand evaluation is JIT-compiled with numba for speed. You should see:
-- ~1000-3000 iterations/second depending on number of players
-- Convergence in 10-30 seconds for typical games
-- Standard error < 0.001 (±0.1% accuracy) in reasonable time
 
 ## Files
 
